@@ -1,0 +1,73 @@
+package com.cybage.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cybage.entity.Customer;
+import com.cybage.exception.RecordNotFoundException;
+import com.cybage.service.CustomerService;
+
+@RestController
+public class CustomerController {
+	
+	@Autowired
+	CustomerService cservice;
+	
+	@PostMapping("/add")
+	public ResponseEntity<String> addCustomer(@RequestBody Customer customer )
+	{
+		 cservice.add(customer);
+		return new ResponseEntity<String>("Customer Added",HttpStatus.CREATED);
+		
+		
+	}
+
+	@GetMapping("/getcustomer/{customer_id}")
+	public ResponseEntity<Product> getProductById(@PathVariable int product_id) throws RecordNotFoundException
+	{
+	Product product=pservice.getProductById(product_id);
+		 if(product ==null)
+		 {
+			throw new RecordNotFoundException("Not found");
+			 
+		 }
+		return new ResponseEntity<Product>(product,HttpStatus.FOUND);
+		
+		
+	}
+
+	@GetMapping("/get")
+	public ResponseEntity<List<Product>> viewProduct()
+	{
+		 
+		return new ResponseEntity<List<Product>>(pservice.getdetails(),HttpStatus.CREATED);
+			
+	}
+
+	@DeleteMapping("/delete/{id}")
+public String deleteProductById(@PathVariable("id") int product_id )
+{
+pservice.deleteProductById(product_id);
+return "Deleted Successfully";
+}
+	
+
+@PutMapping("/update/{id}")
+   public Product
+    updateProduct(@RequestBody Product product, @PathVariable("id") int product_id)
+    {
+        return pservice.updateProduct(product, product_id);
+    }
+
+
+}

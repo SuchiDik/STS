@@ -1,0 +1,14 @@
+package com.cybage.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.cybage.entity.Product;
+
+public interface ProductRepository extends JpaRepository<Product, Integer> {
+	
+	
+	@Query("update product set price=? and product_name=? where product_id=product_id")
+	public Product updateProduct(Product product, int product_id);
+
+}

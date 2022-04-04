@@ -1,0 +1,27 @@
+package com.cybage.service;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.cybage.entity.Product;
+import com.cybage.repository.ProductRepository;
+
+@Service
+public class ProductService {
+	
+	@Autowired
+	ProductRepository prepo;
+
+	public void add(Product product) {
+		// TODO Auto-generated method stub
+		 prepo.save(product);
+	}
+
+	public void getdetails(int product_id) {
+		prepo.findAllById(product_id)
+		
+	}
+
+}

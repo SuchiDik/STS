@@ -1,0 +1,20 @@
+package com.cybage.entity;
+
+import javax.persistence.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Table(name="order_table")
+
+	@Id
+	private int order_id;
+	@Column
+	private int amount;
+	
+	
+
+}

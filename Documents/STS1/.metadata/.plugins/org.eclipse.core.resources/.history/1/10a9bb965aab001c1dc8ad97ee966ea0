@@ -1,0 +1,20 @@
+package com.cybage.service;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+
+import com.cybage.entity.Product;
+import com.cybage.repository.ProductRepository;
+
+public class ProductService {
+	
+	@Autowired
+	ProductRepository prepo;
+
+	public void add(Product product) {
+		// TODO Auto-generated method stub
+		 prepo.save(product);
+	}
+
+}

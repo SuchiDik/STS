@@ -1,0 +1,52 @@
+package com.cybage.entity;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="customer")
+public class Customer {
+	
+	
+	@Id
+	private String name;
+	@Column
+	private String email;
+	@Column
+	private Address address;
+	
+	public Customer() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Customer(String name, String email, Address address) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.address = address;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	@Override
+	public String toString() {
+		return "Customer [name=" + name + ", email=" + email + ", address=" + address + "]";
+	}
+	
+	
+
+}

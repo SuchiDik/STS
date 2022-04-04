@@ -1,0 +1,19 @@
+package com.cybage.entity;
+
+import javax.persistence.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
+@AllArgsConstructor
+public class Order {
+	private int order_id;
+	private int amount;
+	
+	
+
+}

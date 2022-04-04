@@ -1,0 +1,12 @@
+package com.cybage.entity;
+
+@Entity
+@Table(name="address")
+public class Address { 
+	
+	@Column
+	private String area;
+	private String city;
+	private String pincode;
+
+}

@@ -1,0 +1,72 @@
+package com.cybage.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cybage.entity.Product;
+import com.cybage.exception.RecordNotFoundException;
+import com.cybage.service.ProductService;
+
+@RestController
+public class ProductController {
+	
+	@Autowired
+	ProductService pservice;
+	
+	@PostMapping("/add")
+	public ResponseEntity<String> addProduct(@RequestBody Product product )
+	{
+		 pservice.add(product);
+		return new ResponseEntity<String>("Added",HttpStatus.CREATED);
+		
+		
+	}
+	
+	@GetMapping("/getproduct/{product_id}")
+	public ResponseEntity<Optional<Product>> getProductById(@PathVariable int product_id)
+	{
+		 Optional<Product> prod=pservice.getProductById(product_id);
+		return new ResponseEntity<Optional<Product>>(prod,HttpStatus.FOUND);
+		
+		
+	}
+	
+	@GetMapping("/get")
+	public ResponseEntity<List<Product>> viewProduct()
+	{
+		 
+		return new ResponseEntity<List<Product>>(pservice.getdetails(),HttpStatus.CREATED);
+		
+		
+	}
+
+	@DeleteMapping("/delete/{id}")
+public String deleteProductById(@PathVariable("id") int product_id )
+{
+pservice.deleteProductById(product_id);
+return "Deleted Successfully";
+}
+	
+	
+	@PutMapping("/update/{id}")
+	   public Product
+	    updateProduct(@RequestBody Product product, @PathVariable("id") int product_id)
+	    {
+	        return pservice.updateProduct(product, product_id);
+	    }
+	 
+      @ExceptionHandler (RecordNotFoundException.class)
+	public ResponseEntity<String> handleexception(RecordNotFoundException exception)
+	{
+		return new  ResponseEntity<String>(exception.getMessage(),HttpStatus.NOT_FOUND);
+		
+	}	 
+
+}

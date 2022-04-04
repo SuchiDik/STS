@@ -1,0 +1,10 @@
+package com.cybage.entity;
+
+public class Address { 
+	
+	
+	private String area;
+	private String city;
+	private String pincode;
+
+}
